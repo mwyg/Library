@@ -24,9 +24,17 @@
         <processorPath useClasspath="true" />
         <module name="Algo-Trading" />
       </profile>
+      <profile default="false" name="Annotation profile for Library" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="Library" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Algo-Trading" target="1.8" />
+      <module name="Library" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
