@@ -1,5 +1,6 @@
 package com.gft.repository;
 
+import com.gft.model.Autor;
 import com.gft.model.Book;
 import com.gft.model.Rent;
 import com.gft.model.User;
@@ -16,6 +17,9 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
     @Query("SELECT b FROM Book b WHERE b = (:book)")
     public Book findOne(@Param("book")Book book);
+
+    @Query("SELECT b FROM Book b WHERE b.title = (:title)")
+    public Book findByTitle(@Param("title") String title);
 
 //    @Query("SELECT r FROM Rent r WHERE r.book = (:book) AND r.user = (:user) AND r.endDate IS NOT NULL")
 //    public List<Rent> findByUserAndBookGivedBack(@Param("user") User user, @Param("book") Book book);

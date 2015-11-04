@@ -14,19 +14,18 @@ public class Book {
 
     @Id
     @GeneratedValue
-   // @Column(name = "BOOK_ID")
-    private Long id;
+    private Long bookId;
     private String title;
     private boolean rented;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "book", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Rent> rentHistory;
 
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinTable(name = "book_autor", joinColumns = {@JoinColumn(name = "BOOK_ID", nullable = false, updatable = false)},
-//            inverseJoinColumns = {@JoinColumn(name = "AUTOR_ID", nullable = false, updatable = false)})
-//    private List<Autor> autors;
-//git test
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "book_autor", joinColumns = {@JoinColumn(name = "bookId", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "autorId", nullable = false, updatable = false)})
+    private List<Autor> autors;
+
 
     public Book(String title) {
         this.title = title;
@@ -47,11 +46,11 @@ public class Book {
 
 
     public Long getId() {
-        return id;
+        return bookId;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.bookId = id;
     }
 
     public String getTitle() {
@@ -70,12 +69,19 @@ public class Book {
         this.rentHistory = rentHistory;
     }
 
+    public List<Autor> getAutors() {
+        return autors;
+    }
+
+    public void setAutors(List<Autor> autors) {
+        this.autors = autors;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
-                "id=" + id +
+                "id=" + bookId +
                 ", title='" + title + '\'' +
-                ", rented=" + rented +
                 '}';
     }
 }

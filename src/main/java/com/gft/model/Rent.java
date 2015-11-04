@@ -16,12 +16,12 @@ public class Rent {
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "user", referencedColumnName = "id")
+    @JoinColumn(name = "user", referencedColumnName = "userId")
     private User user;
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "book", referencedColumnName = "id")
+    @JoinColumn(name = "book", referencedColumnName = "bookId")
     private Book book;
 
     @NotNull
