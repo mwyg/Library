@@ -24,26 +24,29 @@ public class RentBookImpl  implements RentBook{
     @Autowired
     RentRepository rentRepository;
 
-    public boolean rentBook(User user, Book book) {
+    public boolean rent(User user, Book book) {
         if (bookRepository.findOne(book.getId()).isRented()) {
             return false;
         }
-        bookRepository.findOne(book.getId()).setRented(true);
+        book.setRented(true);
+        bookRepository.save(book);
         Rent rent = new Rent(user,book,new Date());
-        userRepository.findOne(user.getId()).getRented().add(rent);
         rentRepository.save(rent);
         return true;
     }
-//
-//    public boolean giveBeckBook(User user, Book book){
-//        if(bookRepository.findOne(book.getId()).isRented() == false){
-//            return false;
-//        }
-//
-//        bookRepository.findOne(book.getId()).setRented(false);
-//        rentRepository.findOne()
-//
-//
-//    }
+
+    public boolean giveBeck(User user, Book book){
+        if(bookRepository.findOne(book.getId()).isRented() == false){
+            return false;
+        }
+
+        book.setRented(false);
+        bookRepository.save(book);
+        Rent tempRent = rentRepository.findByUserAndBookRent(user, book);
+        tempRent.setEndDate(new Date());
+        rentRepository.save(tempRent);
+
+        return true;
+    }
 
 }

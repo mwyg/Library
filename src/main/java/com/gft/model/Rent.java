@@ -1,7 +1,4 @@
 package com.gft.model;
-
-import com.sun.istack.internal.Nullable;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -87,7 +84,6 @@ public class Rent {
                 "id=" + id +
                 ", user name=" + user.getName() +
                 ", user surname=" + user.getSurname() +
-                ", book id=" + book.getId() +
                 ", book title=" + book.getTitle() +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +

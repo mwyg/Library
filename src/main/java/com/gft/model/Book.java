@@ -1,5 +1,7 @@
 package com.gft.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,11 +14,18 @@ public class Book {
 
     @Id
     @GeneratedValue
+   // @Column(name = "BOOK_ID")
     private Long id;
     private String title;
     private boolean rented;
-    @OneToMany( fetch = FetchType.EAGER, mappedBy = "book", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Rent> rentHistory;
+
+//    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinTable(name = "book_autor", joinColumns = {@JoinColumn(name = "BOOK_ID", nullable = false, updatable = false)},
+//            inverseJoinColumns = {@JoinColumn(name = "AUTOR_ID", nullable = false, updatable = false)})
+//    private List<Autor> autors;
 
 
     public Book(String title) {
@@ -67,7 +76,6 @@ public class Book {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", rented=" + rented +
-                ", rentHistory=" + rentHistory +
                 '}';
     }
 }
