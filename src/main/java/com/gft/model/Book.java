@@ -26,7 +26,7 @@ public class Book {
 //    @JoinTable(name = "book_autor", joinColumns = {@JoinColumn(name = "BOOK_ID", nullable = false, updatable = false)},
 //            inverseJoinColumns = {@JoinColumn(name = "AUTOR_ID", nullable = false, updatable = false)})
 //    private List<Autor> autors;
-
+//git test
 
     public Book(String title) {
         this.title = title;
